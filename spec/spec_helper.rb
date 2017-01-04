@@ -1,14 +1,6 @@
 require 'dockingstation'
-require 'bike'
+# require 'bike'
 
-describe DockingStation do
-  before do
-    @ds = DockingStation.new
-  end
-
-  describe ".release_bike" do
-      it "release Bike to Person" do
-        expect(@ds.release_bike.class).to eql(Bike.new.class)
-      end
-    end
+describe DockingStation.new do
+      it { is_expected.to respond_to(:release_bike) }
 end
