@@ -6,10 +6,18 @@ describe DockingStation do
   it { is_expected.to respond_to(:dock).with(1).argument}
      
   describe "release_bike" do
-     it "returns a working bike" do
+    it "returns a working bike" do
       expect(subject.release_bike.working?).to eql(true)
-     end
     end
+
+    before do
+      subject.dock(@bike)
+      subject.release_bike
+    end
+    it "fails to return a bike when none are available" do
+
+    end
+  end
 
   describe "docked_bike" do
     before do
