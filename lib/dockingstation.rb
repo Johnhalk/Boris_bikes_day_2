@@ -1,12 +1,15 @@
 require_relative 'bike'
 
 class DockingStation
-  attr_reader :docked
+  attr_reader :bikes
+  def initalize
+    @bikes = []
+  end
 
   def release_bike
-    unless @docked.nil?
-      bike = @docked
-      @docked = nil
+    unless @bikes.nil?
+      bike = @bikes
+      @bikes = nil
       bike
     else
       raise StandardError, "No bike available"
@@ -14,8 +17,8 @@ class DockingStation
   end
 
   def dock(bike)
-    if @docked.nil?
-      @docked = bike
+    if @bikes.nil?
+      @bikes << bike
     else
       raise StandardError, "No space available"
     end
