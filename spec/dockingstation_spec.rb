@@ -6,15 +6,16 @@ describe DockingStation do
   it { is_expected.to respond_to(:dock).with(1).argument}
 
   describe "release_bike" do
+    before do
+      @bike = Bike.new   
+      subject.dock(@bike)
+    end
+
     it "returns a working bike" do
       expect(subject.release_bike.working?).to eql(true)
     end
-
-    before do
-      subject.dock(@bike)
-      subject.release_bike
-    end
     it "fails to return a bike when none are available" do
+      subject.release_bike
       expect{subject.release_bike}.to raise_error(StandardError, "No bike available")
     end
   end
