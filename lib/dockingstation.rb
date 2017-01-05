@@ -14,6 +14,10 @@ class DockingStation
   end
 
   def dock(bike)
-    @docked = bike
+    if @docked.nil?
+      @docked = bike
+    else
+      raise StandardError, "No space available"
+    end
   end
 end
