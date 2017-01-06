@@ -1,11 +1,11 @@
 require 'dockingstation'
 require 'bike'
-require 'pry'
+
 
 describe DockingStation do
   it { is_expected.to respond_to(:release_bike) }
   it { is_expected.to respond_to(:dock).with(1).argument}
-  
+
   describe "release_bike" do
     before do
       @bike = Bike.new
@@ -19,13 +19,13 @@ describe DockingStation do
       expect{subject.release_bike}.to raise_error(StandardError, "No bike available")
     end
   end
-  
+
   describe "dock" do
     before do
       @bike = Bike.new
     end
     it "store a bike inside a docking station" do
-      expect(subject.dock(@bike)).to eql(@bike)
+      expect(subject.dock(@bike)).to eql([@bike])
     end
     it "doesn't dock more bikes than capacity (which is 20 ATM)" do
       20.times { subject.dock(Bike.new) }

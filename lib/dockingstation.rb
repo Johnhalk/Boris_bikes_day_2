@@ -9,19 +9,24 @@ class DockingStation
   end
 
   def release_bike
-    unless @bikes.count == 0
-      @bikes.shift
-    else
-      raise StandardError, "No bike available"
-    end
+
+   @bikes.shift unless empty? 
+
+
   end
 
   def dock(bike)
-    if @bikes.count < @max_bikes
-      @bikes << bike
-      bike
-    else
-      raise StandardError, "No space available"
-    end
+    @bikes << bike unless full?
+
   end
+
+private
+  def full?
+    raise StandardError, "No space available" if @bikes.count == @max_bikes
+  end
+
+def empty?
+    raise StandardError, "No bike available" if  @bikes.count == 0
+end
+
 end
