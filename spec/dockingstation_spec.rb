@@ -3,6 +3,9 @@ require 'bike'
 
 
 describe DockingStation do
+  subject {described_class.new(20)}
+#Everytime a new subject is created it is passed the argument 20
+#in order to set the default bike capacity
   it { is_expected.to respond_to(:release_bike) }
   it { is_expected.to respond_to(:dock).with(1).argument}
 
@@ -44,4 +47,16 @@ describe DockingStation do
       expect(subject.bikes).to eql([@bike1, @bike2])
     end
   end
+
+  describe "set capacity" do
+      it "allows us to set the bike capacity on initialization" do
+      station = DockingStation.new(30)
+      expect(station.capacity).to eql (30)
+    end
+    it "sets the default capacity if no arguments are given" do
+      station = DockingStation.new
+      expect(station.capacity).to eql (20)
+    end
+  end
+
 end
