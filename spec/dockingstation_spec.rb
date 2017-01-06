@@ -27,8 +27,8 @@ describe DockingStation do
     it "store a bike inside a docking station" do
       expect(subject.dock(@bike)).to eql([@bike])
     end
-    it "doesn't dock more bikes than capacity (which is 20 ATM)" do
-      20.times { subject.dock(Bike.new) }
+    it "doesn't dock more bikes than capacity" do
+      DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
       expect{subject.dock(@bike)}.to raise_error(StandardError, "No space available")
     end
   end
